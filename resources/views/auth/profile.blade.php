@@ -8,6 +8,9 @@
                 <div class="card-header">{{ __('Update Profile') }}</div>
 
                 <div class="card-body">
+                    @if (session('success'))
+                        <div class="alert alert-success">{{ session('success') }}</div>
+                    @endif
                     <form method="POST" action="{{ route('update-profile') }}">
                         @csrf
                         {{ method_field('PUT') }}
@@ -59,7 +62,7 @@
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" autocomplete="new-password">
 
                                 @if($errors->has('password'))
                                     <span class="invalid-feedback" role="alert">
@@ -72,10 +75,10 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+                            <label for="password-confirmation" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                <input id="password-confirmation" type="password" class="form-control" name="password_confirmation" autocomplete="new-password">
                             </div>
                         </div>
 
@@ -83,11 +86,11 @@
                             <label for="current_password" class="col-md-4 col-form-label text-md-right">{{ __('Current password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="current_password" type="password" class="form-control @error('current_password') is-invalid @enderror" name="current_password" required autocomplete="new-current_password">
+                                <input id="current_password" type="password" class="form-control @error('current_password') is-invalid @enderror" name="current_password" autocomplete="new-current_password">
 
-                                @if($errors->has('password'))
+                                @if($errors->has('current_password'))
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('password') }}</strong>
+                                        <strong>{{ $errors->first('current_password') }}</strong>
                                     </span>
                                 @else
                                     <small class="form-text text-muted">Current password is needed to confirm your changes</small>
